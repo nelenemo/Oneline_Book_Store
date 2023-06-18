@@ -12,4 +12,10 @@ public interface UserRepo extends JpaRepository<User, Integer> {
 
     @Query("SELECT u From User u WHERE u.username=?1")
     Optional<User> findUserByUsername(String username);
+
+    @Query(value = "select role from user where username=?1", nativeQuery = true)
+    Optional<String> getUserByRole(String userName);
+
+    @Query(value = "select user_id from user where username=?1", nativeQuery = true)
+    Optional<Integer> getUserId(String userName);
 }

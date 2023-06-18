@@ -5,8 +5,12 @@
     <file type="web" url="file://$PROJECT_DIR$/APIGateway" />
     <file type="web" url="file://$PROJECT_DIR$/APIGateway-Service" />
     <file type="web" url="file://$PROJECT_DIR$/apiGatewayService" />
+    <file type="web" url="file://$PROJECT_DIR$/BookOrder" />
     <file type="web" url="file://$PROJECT_DIR$/BookService" />
     <file type="web" url="file://$PROJECT_DIR$/DiscoveryService" />
+    <file type="web" url="file://$PROJECT_DIR$/Identity-Service" />
+    <file type="web" url="file://$PROJECT_DIR$/Order-Service" />
+    <file type="web" url="file://$PROJECT_DIR$/UserManagement" />
     <file type="web" url="file://$PROJECT_DIR$/UserService" />
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="1.7" project-jdk-type="JavaSDK">

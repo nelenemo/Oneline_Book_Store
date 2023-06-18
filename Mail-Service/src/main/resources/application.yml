@@ -1,0 +1,14 @@
+spring:
+  mail:
+    host:
+    username:
+    password:
+    port:
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+          auth:
+
+

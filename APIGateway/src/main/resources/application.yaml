@@ -11,12 +11,23 @@ spring:
         - id: USER-SERVICE
           uri: lb://USER-SERVICE
           predicates:
-            - Path=/api/user/**
+            - Path=/auth/**
+          filters:
+            - AuthenticationFilter
 
         - id: BOOK-SERVICE
           uri: lb://BOOK-SERVICE
           predicates:
             - Path=/api/book/**
+          filters:
+            - AuthenticationFilter
+
+        - id: ShoppingCart-Service
+          uri: lb://ShoppingCart-Service
+          predicates:
+            - Path=/carts/**
+          filters:
+            - AuthenticationFilter
 
 
 

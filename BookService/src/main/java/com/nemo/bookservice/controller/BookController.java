@@ -33,11 +33,41 @@ public class BookController {
         return "book has been added";
     }
 
+
     @GetMapping("/getAllBooks")
     public ResponseEntity<List<BookResponse>> getAllBooks() {
         List<BookResponse> bookResponses = bookService.getAllBooks();
         return ResponseEntity.status(HttpStatus.OK).body(bookResponses);
     }
+
+
+
+
+
+
+    @GetMapping("/getBookById/{bookId}")
+    public ResponseEntity<BookResponse> getBookById(@PathVariable("bookId") int bookId) {
+
+        BookResponse book = bookService.getBookById(bookId);
+
+        return ResponseEntity.status(HttpStatus.OK).body(book);
+    }
+    @GetMapping("/getBookByNme/{title}")
+    public ResponseEntity<BookResponse> getBookByName(@PathVariable("title") String title) {
+
+        BookResponse bookByName = bookService.getBookByName(title);
+
+        return ResponseEntity.status(HttpStatus.OK).body(bookByName);
+    }
+
+    @PutMapping("/updateBookStock")
+    public String updateProductStock(String bookName, int numberOfBooksAvailable){
+        bookService.updateStock(bookName,numberOfBooksAvailable);
+        return "updated successfully";
+    }
+
+
+
 
 //    @PutMapping("/updatePrice/{bookId}")
 //    public ResponseEntity<String> updateBookPrice(@PathVariable int bookId, @RequestParam double retailPrice) {

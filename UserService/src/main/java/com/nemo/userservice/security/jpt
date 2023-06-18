@@ -1,0 +1,57 @@
+
+//    @Override
+//    public void saveUser(UserRequest userRequest) {
+//        String rawPassword = userRequest.getPassword();
+//        if (rawPassword == null) {
+//            rawPassword = "defaultPassword";// Handle the null password case (e.g., throw an exception, set a default password, or return an error message)
+//        } else {
+//            String encodedPassword = passwordEncoder.encode(rawPassword);
+//            // Proceed with saving the encoded password or performing any other necessary actions
+//        }
+
+
+//        User user = new User();
+//        user.setUsername(userRequest.getFirstName() + " " + userRequest.getLastName());
+//        user.setEmail(userRequest.getEmail());
+//        user.setPassword(this.passwordEncoder.encode(userRequest.getPassword()));//.encode(userRequest.getPassword()));
+//        user.setContact(userRequest.getContact());
+
+//        Role role;
+//        role=roleRepository.findByName("ROLE_ADMIN");
+//        if(role==null) {
+//            role =checkRoleExist();
+//        }
+//        user.setRoles(Arrays.asList(role));
+//        userRepo.save(user);
+//        System.out.println("its done, the user has been saved");
+//    }
+
+//    private Role checkRoleExist(){
+//        Role role = new Role();
+//        role.setName("ROLE_ADMIN");
+//        return roleRepository.save(role);
+//    }
+
+    }
+
+        @PostMapping("/register/save")
+        public String registration(@Valid @ModelAttribute("user") UserRequest userRequest,
+                                   BindingResult result,
+                                   Model model){
+            System.out.println("1stcontroller of add user");
+            Optional<User> existingUser = userService.findUserByEmail(userRequest.getEmail());
+
+            if(existingUser.isPresent()
+                    && existingUser.get().getEmail() != null
+                    && !existingUser.get().getEmail().isEmpty()){
+                result.rejectValue("email", null,
+                        "There is already an account registered with the same email");
+            }
+
+
+            System.out.println("controller of add user");
+            System.out.println("2nd one");
+            userService.saveUser(userRequest);
+            System.out.println("3rd one");
+            return "the user has been saved";
+        }

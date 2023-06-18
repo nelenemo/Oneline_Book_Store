@@ -23,6 +23,12 @@ void addBooks(BookRequest bookRequest);
     Book updateBook(Book newBook, int bookId);
 
     void saveOrUpdate(Book books, int bookId);
+
+    BookResponse getBookById(int bookId);
+
+    BookResponse getBookByName(String title);
+
+    void updateStock(String bookName, int numberOfBooksAvailable);
 }
 //
 //        Book book=new Book();

@@ -1,18 +1,22 @@
 package com.nemo.userservice.dto;
 
-import com.nemo.userservice.enums.Role;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserRequest {
-    private String username;
+//  @NotEmpty
+    private String firstName;
+//  @NotEmpty
+    private String lastName;
+//  @NotEmpty(message = "Please write down valid email id")
     private String email;
+//  @NotEmpty(message = "Password is complusory")
     private String password;
     private String contact;
-//    private Role role;
+    private String role;
+
 
 }

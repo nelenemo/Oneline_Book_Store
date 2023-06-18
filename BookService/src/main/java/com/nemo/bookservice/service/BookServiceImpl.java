@@ -4,13 +4,11 @@ import com.nemo.bookservice.dto.BookRequest;
 import com.nemo.bookservice.dto.BookResponse;
 import com.nemo.bookservice.entity.Book;
 import com.nemo.bookservice.entity.BookCategory;
-import com.nemo.bookservice.enums.BookStatus;
 import com.nemo.bookservice.exception.BookDoesntExistException;
 import com.nemo.bookservice.repository.BookRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -18,6 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class BookServiceImpl implements BookService {
     @Autowired
     private ModelMapper modelMapper;
@@ -50,6 +49,7 @@ public class BookServiceImpl implements BookService {
             Book bookToUpdate = existingBook.get();
             int currentNumberOfBooksAvailable = bookToUpdate.getNumberOfBooksAvailable();
             bookToUpdate.setNumberOfBooksAvailable(currentNumberOfBooksAvailable + 1);
+            log.info("One more book is added with name :  "+book.getTitle());
             bookRepository.save(bookToUpdate);
 
         }
@@ -95,15 +95,19 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book updateBook(Book newBook, int bookId) {
+
+
         return bookRepository.findById(bookId)
+
                 .map(book ->{
-                    book.setNumberOfBooksAvailable(book.getNumberOfBooksAvailable());
-                    book.setAuthors(book.getAuthors());
-                    book.setBookcategory(book.getBookcategory());
-                    book.setBookStatus(book.getBookStatus());
-                    book.setTitle(book.getTitle());
-                    book.setPublishingHouse(book.getPublishingHouse());
-                    book.setRetailPrice(book.getRetailPrice());
+                    book.setNumberOfBooksAvailable(newBook.getNumberOfBooksAvailable());
+                    book.setAuthors(newBook.getAuthors());
+                    book.setBookcategory(newBook.getBookcategory());
+                    book.setBookStatus(newBook.getBookStatus());
+                    book.setTitle(newBook.getTitle());
+                    book.setPublishingHouse(newBook.getPublishingHouse());
+                    book.setRetailPrice(newBook.getRetailPrice());
+
                     return bookRepository.save(book);
                 })
                 .orElseGet(() ->{
@@ -118,7 +122,40 @@ public class BookServiceImpl implements BookService {
 
     }
 
+    @Override
+    public BookResponse getBookById(int bookId) {
+        Book book = bookRepository.findById(bookId).get();
+        BookResponse bookById = modelMapper.map(book, BookResponse.class);
+        return bookById;
+
+
+//        BookResponse bookResponse = new BookResponse();
+//        bookResponse.setTitle(book.getTitle());
+//        bookResponse.setAuthors(book.getAuthors());
+//        bookResponse.setPublishingHouse(book.getPublishingHouse());
+//        bookResponse.setRetailPrice(book.getRetailPrice());
+//        bookResponse.setNumberOfBooksAvailable(book.getNumberOfBooksAvailable());
+////        bookResponse.setBookCategory(book.getBookcategory().getCategoryName());
+
+//        return bookResponse;
+    }
+
+    @Override
+    public BookResponse getBookByName(String title) {
+        Optional<Book> bookByTitle = bookRepository.findBookByTitle(title);
+        BookResponse map = modelMapper.map(bookByTitle, BookResponse.class);
+        return map;
+    }
+
+    @Override
+    public void updateStock(String bookName, int numberOfBooksAvailable) {
+
+    }
+
+
 }
+
+
 
 
 //responseEmployees.forEach(employeeEntity -> {

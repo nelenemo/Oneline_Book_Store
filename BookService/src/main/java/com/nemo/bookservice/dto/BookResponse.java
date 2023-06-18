@@ -11,13 +11,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookResponse {
+    private int bookId;
     private String title;
     private String authors;
     private String publishingHouse;
     private Double retailPrice;
     @Enumerated(EnumType.STRING)
     private BookStatus bookStatus;
-    private BookCategory bookCategory;
+    private BookCategoryResponse bookCategory;
     private int numberOfBooksAvailable;
 
 }
