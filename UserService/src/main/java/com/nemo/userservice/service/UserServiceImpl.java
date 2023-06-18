@@ -2,9 +2,11 @@ package com.nemo.userservice.service;
 
 import com.nemo.userservice.dto.UserRequest;
 import com.nemo.userservice.dto.UserResponse;
+import com.nemo.userservice.entity.Mail;
 import com.nemo.userservice.entity.User;
 import com.nemo.userservice.enums.Status;
 import com.nemo.userservice.exception.UserNotFound;
+import com.nemo.userservice.externalService.MailService;
 import com.nemo.userservice.repo.UserRepo;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -25,16 +27,18 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
+    private final MailService mailService;
 
 
     @Autowired
     private JwtService jwtService;
 
-    public UserServiceImpl(UserRepo userRepo, PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserRepo userRepo, PasswordEncoder passwordEncoder, MailService mailService) {
         this.userRepo = userRepo;
         this.passwordEncoder = passwordEncoder;
 
 
+        this.mailService = mailService;
     }
 
 
@@ -47,6 +51,8 @@ public class UserServiceImpl implements UserService {
         userResponse.setContact(user.getContact());
         return userResponse;
     }
+
+
 
 
     @Override
@@ -68,6 +74,7 @@ public class UserServiceImpl implements UserService {
             user.setState(Status.ACTIVE);
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        mail(user.getEmail());
         userRepo.save(user);
     }
 
@@ -100,6 +107,16 @@ public class UserServiceImpl implements UserService {
                                     "User with name " + userName + " do not exist");
                         }
                 );
+    }
+
+
+    public void mail(String email ) {
+        Mail mail1=new Mail();
+        mail1.setTo(email);
+        mail1.setBody("you have been registered in online book store.");
+        mail1.setSubject("Online book store message");
+        mailService.mail(mail1);
+
     }
 
     @Override

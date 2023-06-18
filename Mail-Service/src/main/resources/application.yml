@@ -1,14 +1,23 @@
+
 spring:
+  application:
+    name: MAIL-SERVICE
   mail:
-    host:
-    username:
-    password:
-    port:
+    host: smtp.gmail.com
+    username: nilimamaka111@gmail.com
+    password: cdfmqwzsydbkvhsh
+    port: 587
     properties:
       mail:
         smtp:
           starttls:
             enable: true
-          auth:
+          auth: true
+
+
+
+server:
+  port: 7021
+
 
 

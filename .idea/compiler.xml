@@ -8,7 +8,7 @@
         <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.26/8f8cf0372abf564913e9796623aac4c8ea44025a/lombok-1.18.26.jar" />
         </processorPath>
-        <module name="Order-Service.main" />
+        <module name="UserService.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -21,6 +21,9 @@
       <module name="Identity-Service" target="17" />
       <module name="Identity-Service.main" target="17" />
       <module name="Identity-Service.test" target="17" />
+      <module name="SendMail" target="17" />
+      <module name="SendMail.main" target="17" />
+      <module name="SendMail.test" target="17" />
       <module name="UserManagement" target="17" />
       <module name="UserManagement.main" target="17" />
       <module name="UserManagement.test" target="17" />

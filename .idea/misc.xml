@@ -9,7 +9,9 @@
     <file type="web" url="file://$PROJECT_DIR$/BookService" />
     <file type="web" url="file://$PROJECT_DIR$/DiscoveryService" />
     <file type="web" url="file://$PROJECT_DIR$/Identity-Service" />
+    <file type="web" url="file://$PROJECT_DIR$/Mail-Service" />
     <file type="web" url="file://$PROJECT_DIR$/Order-Service" />
+    <file type="web" url="file://$PROJECT_DIR$/SendMail" />
     <file type="web" url="file://$PROJECT_DIR$/UserManagement" />
     <file type="web" url="file://$PROJECT_DIR$/UserService" />
   </component>

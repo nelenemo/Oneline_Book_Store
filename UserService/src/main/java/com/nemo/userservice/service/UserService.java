@@ -24,4 +24,5 @@ public interface UserService {
 
     UserResponse getUserByName(String username);
     public int getUserId(String userName);
+
 }
