@@ -3,13 +3,6 @@
   <component name="CompilerConfiguration">
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
-      <profile name="Gradle Imported" enabled="true">
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.26/8f8cf0372abf564913e9796623aac4c8ea44025a/lombok-1.18.26.jar" />
-        </processorPath>
-        <module name="UserService.main" />
-      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="APIGateway-Service" target="17" />
@@ -18,6 +11,9 @@
       <module name="apiGatewayService" target="17" />
       <module name="apiGatewayService.main" target="17" />
       <module name="apiGatewayService.test" target="17" />
+      <module name="BookOrder" target="17" />
+      <module name="BookOrder.main" target="17" />
+      <module name="BookOrder.test" target="17" />
       <module name="Identity-Service" target="17" />
       <module name="Identity-Service.main" target="17" />
       <module name="Identity-Service.test" target="17" />
